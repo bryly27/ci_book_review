@@ -31,7 +31,6 @@ class Users extends CI_Controller
 
 			//---------form validation---------
 
-			$this->load->library('form_validation');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|min_length[2]');
    		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|min_length[2]');
 	    $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
@@ -131,7 +130,16 @@ class Users extends CI_Controller
 
 	public function profile($id)
 	{
-		$this->load->view('profile');
+		if($this->session->userdata('loggedIn') == TRUE)
+		{
+			$array['user'] = $this->User->get_profile($id);
+			$this->load->view('profile', $array);
+		}
+		else
+		{
+			$this->session->sess_destroy();
+			redirect('/');
+		}
 	}
 
 

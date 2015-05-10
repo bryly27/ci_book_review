@@ -41,6 +41,7 @@
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 	}
+	
 
 </style>
 <body>	
@@ -61,14 +62,8 @@
 	        <!-- Collect the nav links, forms, and other content for toggling -->
 	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	            <ul class="nav navbar-nav navbar-right">
-	                <li class="hidden">
-	                    <a href="#page-top"></a>
-	                </li>
 	                <li>
-	                    <a class="page-scroll" href=""><?= $this->session->userdata('user')['first_name'] ?></a>
-	                </li>
-	                <li>
-	                    <a class="page-scroll" href="/users/profile/<?= $this->session->userdata('user')['id'] ?>">Profile</a>
+	                    <a class="page-scroll" href="/users/profile/<?= $this->session->userdata('user')['id'] ?>"><?= $this->session->userdata('user')['first_name'] ?></a>
 	                </li>
 	                <li>
 	                    <a class="page-scroll" href="/users/logout">Log Out</a>
@@ -93,55 +88,30 @@
 					</div>
 				</div>
 
+<?php  
+			foreach($recent_reviews as $review)
+			{ ?>
 				<div class='row reviews'>
 					<div class='col-md-12'>
-						<h2><a href="">Divergent</a></h2>
+						<h2><a href="/books/review/<?= $review['id'] ?>"><?= $review['title'] ?></a></h2>
 						<div class='home_review'>
 							<p>Rating: 
+<?php  
+							for($i = 1; $i<=$review['rating']; $i++)
+							{ ?>
 								<img class='star' src="/assets/img/star.ico">
-								<img class='star' src="/assets/img/star.ico">
-								<img class='star' src="/assets/img/star.ico">
+<?php					} ?>
+								
 							</p>
-							<p><a href="">Jesse</a> says: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo...
+							<p><a href="/books/users/<?= $review['user_id'] ?>"><?= $review['first_name'] ?></a> says: <?= $review['review'] ?>
 							</p>
-							<p>Posted on May 7th, 2015</p>
+							<p><?= $review['created_at'] ?></p>
 						</div>
 					</div>
 				</div>
+<?php	} ?>
 
-				<div class='row reviews'>
-					<div class='col-md-12'>
-						<h2><a href="">Insurgent</a></h2>
-						<div class='home_review'>
-							<p>Rating: 
-								<img class='star' src="/assets/img/star.ico">
-								<img class='star' src="/assets/img/star.ico">
-							</p>
-							<p><a href="">Jesse</a> says: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo...
-							</p>
-							<p>Posted on May 7th, 2015</p>
-						</div>
-					</div>
-				</div>
-
-				<div class='row reviews'>
-					<div class='col-md-12'>
-						<h2><a href="">Hunger Games</a></h2>
-						<div class='home_review'>
-							<p>Rating: 
-								<img class='star' src="/assets/img/star.ico">
-								<img class='star' src="/assets/img/star.ico">
-								<img class='star' src="/assets/img/star.ico">
-								<img class='star' src="/assets/img/star.ico">
-							</p>
-							<p><a href="">Jesse</a> says: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo...
-							</p>
-							<p>Posted on May 7th, 2015</p>
-						</div>
-					</div>
-				</div>
 			</div>
-
 
 			<div class='row'>
 				<div class='col-md-6'>
