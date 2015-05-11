@@ -14,6 +14,7 @@ class Books extends CI_Controller
 		if($this->session->userdata('loggedIn') == TRUE)
 		{
 			$array['recent_reviews'] = $this->Book->get_recent_reviews();
+			$array['books'] = $this->Book->get_books();
 			$this->load->view('home', $array);
 		}
 		else 

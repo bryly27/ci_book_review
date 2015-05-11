@@ -52,6 +52,11 @@ class Book extends CI_Model {
     {
         return $this->db->query("SELECT books.id, books.title, authors.id as author_id, authors.name, reviews.rating, users.id as user_id, users.first_name, reviews.review, reviews.created_at FROM reviews LEFT JOIN books ON reviews.book_id = books.id LEFT JOIN users ON reviews.user_id = users.id LEFT JOIN authors ON books.author_id = authors.id ORDER BY reviews.id DESC LIMIT 3")->result_array();
     }
+
+    function get_books()
+    {
+        return $this->db->query("SELECT books.id, books.title FROM books ORDER BY title")->result_array();
+    }
    
 
 

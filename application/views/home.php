@@ -94,8 +94,9 @@
 				<div class='row reviews'>
 					<div class='col-md-12'>
 						<h2><a href="/books/review/<?= $review['id'] ?>"><?= $review['title'] ?></a></h2>
+						<p>By: <a href='/books/author/<?= $review['author_id'] ?>'><?= $review['name'] ?></a></p>
 						<div class='home_review'>
-							<p>Rating: 
+							<p>
 <?php  
 							for($i = 1; $i<=$review['rating']; $i++)
 							{ ?>
@@ -103,9 +104,9 @@
 <?php					} ?>
 								
 							</p>
-							<p><a href="/books/users/<?= $review['user_id'] ?>"><?= $review['first_name'] ?></a> says: <?= $review['review'] ?>
+							<p><a href="/users/profile/<?= $review['user_id'] ?>"><?= $review['first_name'] ?></a> says: <?= $review['review'] ?>
 							</p>
-							<p><?= $review['created_at'] ?></p>
+							<p>Posted on: <?= date('F jS, Y',strtotime($review['created_at'])) ?></p>
 						</div>
 					</div>
 				</div>
@@ -123,30 +124,12 @@
 					<div class='row container'>
 						<div class='col-md-12'>
 							<div class='other_reviews col-md-4'>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
-								<p><a href="">Harry Potter</a><p>
-								<p><a href="">Twilight</a></p>
-								<p><a href="">Matilda</a></p>
+<?php  
+							foreach($books as $book)
+							{ ?>
+								<p><a href="/books/review/<?= $book['id'] ?>"><?= $book['title'] ?></a><p>
+<?php					} ?>
+
 							</div>
 						</div>
 					</div>
