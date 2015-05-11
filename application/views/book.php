@@ -16,6 +16,9 @@
 	.review {
 		border-bottom: 1px solid silver;
 	}
+	.avg_star {
+		height: 15px;
+	}
 </style>
 
 <body>	
@@ -52,6 +55,30 @@
 	<div class='container book_content'>
 		<h1><?= $reviews[0]['title'] ?></h1>
 		<p>Author: <a href="/books/author/<?= $reviews[0]['author_id'] ?>"><?= $reviews[0]['name'] ?></a></p>
+		<p>
+<?php  
+		$sum = 0;
+		$avg = 0;
+		foreach ($reviews as $key => $value) 
+		{
+			$sum += $value['rating'];	
+		}
+		$avg = ceil($sum/count($reviews));	
+			for($i = 1; $i<=$avg; $i++)
+			{ ?>
+				<img class='avg_star' src="/assets/img/star.ico">
+<?php } ?>
+
+<?php  
+			if(count($reviews)>1)
+			{ ?>
+				(<?= count($reviews) ?> reviews)
+<?php	}
+			else
+			{ ?>
+				(<?= count($reviews) ?> review)
+<?php	} ?>
+		</p>
 		
 
 		<div class='row'>
@@ -77,7 +104,7 @@
  
 			</div>
 			<div class='col-md-6 col-sm-6'>
-				<h3>jsdakfjals</h3>
+				<h3>Add a review:</h3>
 
 			</div>
 
