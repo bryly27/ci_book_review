@@ -1,0 +1,32 @@
+body {
+	padding: 5px;
+}
+.header {
+	border-bottom: 1px solid black;
+}
+.header a {
+	vertical-align: bottom;
+}
+.home_content {
+	margin-top: 75px;
+}
+.home_review {
+	margin-left: 20px;
+}
+.star {
+	height: 30px;
+}
+.other_reviews {
+	border: 1px solid silver;
+	overflow: scroll;
+	overflow-y: auto;
+	height: 300px
+}
+.other_reviews::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.other_reviews::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}

@@ -60,7 +60,16 @@
 					<div class='col-md-6'>
 						<p>Name: <?= $user['first_name'] ?> <?= $user['last_name'] ?></p>
 						<p>Email: <?= $user['email'] ?></p>
-						<p>User since: <?= $user['created_at'] ?></p>
+						<p>User since: <?= date('F jS, Y',strtotime($user['created_at'])) ?></p>
+						<p>Total reviews: <?= count($reviews) ?></p>
+					</div>
+					<div class='col-md-6'>
+						<p>Posted reviews on the following books: </p>
+<?php  
+					foreach($reviews as $review)
+					{ ?>
+						<h5><a href='/books/review/<?= $review['id'] ?>'><?= $review['title'] ?></h5>
+<?php			} ?>
 					</div>
 				</div>
 

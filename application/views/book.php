@@ -9,6 +9,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/assets/css/home.css">
 </head>
+<style type="text/css">
+	.book_content {
+		margin-top: 75px;
+	}
+	.review {
+		border-bottom: 1px solid silver;
+	}
+</style>
 
 <body>	
 	<!-- Navigation -->
@@ -41,69 +49,42 @@
     <!-- /.container-fluid -->
 	</nav>
 
+	<div class='container book_content'>
+		<h1><?= $reviews[0]['title'] ?></h1>
+		<p>Author: <a href="/books/author/<?= $reviews[0]['author_id'] ?>"><?= $reviews[0]['name'] ?></a></p>
+		
 
-	<div class='container home_content'>
 		<div class='row'>
-			<div class='col-md-6'>
-				<div class='row'>
-					<div class='col-md-6'>
-						<h4>Recent Book Reviews</h4>
-					</div>
-					<div class='col-md-6'>
-						<a class='btn btn-default pull-right' href="/books/add">Add a review</a>
-					</div>
-				</div>
+			<div class='col-md-6 col-sm-6'>
+			<h3>Reviews:</h3>
 
 <?php  
-			foreach($recent_reviews as $review)
+			foreach($reviews as $review)
 			{ ?>
-				<div class='row reviews'>
-					<div class='col-md-12'>
-						<h2><a href="/books/review/<?= $review['id'] ?>"><?= $review['title'] ?></a></h2>
-						<p>By: <a href='/books/author/<?= $review['author_id'] ?>'><?= $review['name'] ?></a></p>
-						<div class='home_review'>
-							<p>
+			<div class='review'>
+				<p>Rating: 
 <?php  
-							for($i = 1; $i<=$review['rating']; $i++)
-							{ ?>
-								<img class='star' src="/assets/img/star.ico">
-<?php					} ?>
-								
-							</p>
-							<p><a href="/users/profile/<?= $review['user_id'] ?>"><?= $review['first_name'] ?></a> says: <?= $review['review'] ?>
-							</p>
-							<p>Posted on: <?= date('F jS, Y',strtotime($review['created_at'])) ?></p>
-						</div>
-					</div>
+				for($i = 1; $i<=$review['rating']; $i++)
+				{ ?>
+					<img class='star' src="/assets/img/star.ico">
+<?php		} ?>
+					</p>
+					<p><a href='/users/profile/<?= $review['user_id'] ?>'><?= $review['first_name'] ?></a> says: <?= $review['review'] ?></p>
+					<p>Posted on: <?= date('F jS, Y',strtotime($review['created_at'])) ?></p>
 				</div>
-<?php	} ?>
+	<?php	} ?>
 
+ 
 			</div>
+			<div class='col-md-6 col-sm-6'>
+				<h3>jsdakfjals</h3>
 
-			<div class='row'>
-				<div class='col-md-6'>
-					<div class='row container'>
-						<div class='col-md-12'>
-							<h4>Other books with reviews:</h4>
-						</div>
-					</div>
-					<div class='row container'>
-						<div class='col-md-12'>
-							<div class='other_reviews col-md-4'>
-<?php  
-							foreach($books as $book)
-							{ ?>
-								<p><a href="/books/review/<?= $book['id'] ?>"><?= $book['title'] ?></a><p>
-<?php					} ?>
-
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 
 
 		</div>
+
+
 	</div>
 
 

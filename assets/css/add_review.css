@@ -1,0 +1,22 @@
+.review_form {
+	margin-top: 75px;
+}
+.new_review {
+	margin-top: 30px;
+}
+.star {
+	height: 30px;
+}
+.gray {
+	-webkit-filter: grayscale(100%); 
+	filter: grayscale(100%);
+}
+.star_color {
+	height: 30px;
+}
+#result_titles, #result_authors {
+	margin-top: 20px;
+}
+.back_button {
+	margin-right: 20px;
+}

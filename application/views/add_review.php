@@ -9,29 +9,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src='/assets/js/book_search.js'></script>
 <script type="text/javascript" src='/assets/js/ratings.js'></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/add_review.css">
 </head>
-<style type="text/css">
-	.review_form {
-		margin-top: 75px;
-	}
-	.new_review {
-		margin-top: 30px;
-	}
-	.star {
-		height: 30px;
-	}
-	.gray {
-		-webkit-filter: grayscale(100%); 
-		filter: grayscale(100%);
-	}
-	.star_color {
-		height: 30px;
-	}
-	#result_titles, #result_authors {
-		margin-top: 20px;
-	}
-
-</style>
 
 <body>	
 	<!-- Navigation -->
@@ -138,6 +117,7 @@
 					     		<input class='btn btn-primary pull-right' type='submit' value='Submit Review'>
 									<input id='rating' name='book_rating' type='hidden' value=''>
 									<input type='hidden' name='user_id' value='<?= $this->session->userdata('user')['id'] ?>'>
+					      	<a href="/books" class='btn btn-danger pull-right back_button'>Back</a>
 					      </div>
 							</div>
 						</form>

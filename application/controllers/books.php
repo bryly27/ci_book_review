@@ -77,6 +77,12 @@ class Books extends CI_Controller
 		$this->load->view('partials/book_author.php', $array);
 	}
 
+	public function review($id)
+	{
+		$array['reviews'] = $this->Book->get_reviews($id);
+		$this->load->view('book', $array);
+	}
+
 
 
 

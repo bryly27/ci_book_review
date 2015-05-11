@@ -133,6 +133,7 @@ class Users extends CI_Controller
 		if($this->session->userdata('loggedIn') == TRUE)
 		{
 			$array['user'] = $this->User->get_profile($id);
+			$array['reviews'] = $this->User->get_reviews($id);
 			$this->load->view('profile', $array);
 		}
 		else

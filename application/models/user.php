@@ -19,5 +19,11 @@ class User extends CI_Model {
         return $this->db->query("SELECT first_name, last_name, email, created_at FROM users WHERE id = ?", $id)->row_array();
     }
 
+    function get_reviews($id)
+    {
+        return $this->db->query("SELECT books.id, books.title, reviews.rating, reviews.created_at FROM reviews LEFT JOIN users ON reviews.user_id = users.id LEFT JOIN books ON reviews.book_id = books.id WHERE users.id = ? ORDER BY reviews.created_at DESC", $id)->result_array();
+    }   
+
+
 
 }

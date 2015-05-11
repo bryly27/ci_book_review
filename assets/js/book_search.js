@@ -14,7 +14,6 @@ $(document).ready(function(){
 		});
 
 		$('#book_author').keyup(function(){
-			console.log('here');
 			var author = $(this).val();
 			author = author.split(' ').join('_');
 			if(author !== ''){
@@ -26,7 +25,6 @@ $(document).ready(function(){
 		});
 
 		$(document).on('change', '.title_button', function(){
-			console.log($(this).attr('author'));
 			var id = $(this).attr('author');
 			$.post(
 				'/books/get_author_by_id/' + id, function(results){
