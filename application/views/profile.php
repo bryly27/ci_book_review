@@ -15,6 +15,9 @@
 	.profile_content {
 		margin-top: 50px;
 	}
+	.back_button {
+		margin-top: 50px;
+	}
 
 </style>
 <body>	
@@ -75,8 +78,8 @@
 
 			
 
+				<a href="/books" class='btn btn-default back_button'>Back</a>
 			</div>
-
 
 		</div>
 	</div>

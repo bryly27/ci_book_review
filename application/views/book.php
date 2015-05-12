@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/assets/css/home.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/add_review.css">
+<script type="text/javascript" src='/assets/js/ratings.js'></script>
 </head>
 <style type="text/css">
 	.book_content {
@@ -19,9 +21,19 @@
 	.avg_star {
 		height: 15px;
 	}
+	.submit_form {
+		margin-top: 10px;
+	}
+	.review_star {
+		height: 30px;
+	}
+	.back_button {
+		margin-top: 50px;
+	}
 </style>
 
 <body>	
+
 	<!-- Navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -93,26 +105,74 @@
 <?php  
 				for($i = 1; $i<=$review['rating']; $i++)
 				{ ?>
-					<img class='star' src="/assets/img/star.ico">
+					<img class='review_star' src="/assets/img/star.ico">
+<?php		} ?>
+
+
+<?php  
+				if($this->session->userdata('user')['id'] === $review['user_id'])
+				{ ?>
+					<a class='pull-right' href="/books/delete_review/<?= $review['review_id'] ?>/<?= $review['book_id'] ?>">Delete Review</a>
 <?php		} ?>
 					</p>
 					<p><a href='/users/profile/<?= $review['user_id'] ?>'><?= $review['first_name'] ?></a> says: <?= $review['review'] ?></p>
 					<p>Posted on: <?= date('F jS, Y',strtotime($review['created_at'])) ?></p>
 				</div>
 	<?php	} ?>
-
+			<a href="/books" class='btn btn-default back_button'>Back</a>
  
 			</div>
 			<div class='col-md-6 col-sm-6'>
+
+<?php  
+					if($this->session->flashdata('errors'))
+					{
+						foreach($this->session->flashdata('errors') as $error)
+						{ ?>
+							<p><?= $error ?></p>
+<?php				}
+					}
+
+?>		
+			<div class='col-md-8 col-sm-8'>
 				<h3>Add a review:</h3>
+				<form action='/books/add_review_from_book/<?= $reviews[0]['book_id'] ?>' method='post'>
+					<div class="form-group">
+			     	<textarea class="form-control" name='book_review' rows="5" id="review" ></textarea>
+					</div>
+
+
+			    <!-- <div class="col-md-12"> -->
+					<label class="control-label" for="rating">Rating:</label>
+	     		<img class='star gray star1' src="/assets/img/star.ico" value='1'>
+	     		<img class='star gray star2' src="/assets/img/star.ico" value='2'>
+	     		<img class='star gray star3' src="/assets/img/star.ico" value='3'>
+	     		<img class='star gray star4' src="/assets/img/star.ico" value='4'>
+	     		<img class='star gray star5' src="/assets/img/star.ico" value='5'>
+			    
+			    <!-- submit -->
+					<div class="form-group submit_form">
+		     		<input class='btn btn-primary' type='submit' value='Submit Review'>
+						<input id='rating' name='book_rating' type='hidden' value=''>
+						<input type='hidden' name='user_id' value='<?= $this->session->userdata('user')['id'] ?>'>
+						<input type='hidden' name='book_id' value='<?= $reviews[0]['book_id'] ?>'>
+						<input type='hidden' name='author_id' value='<?= $reviews[0]['author_id'] ?>'>
+					</div>
+				</form>
+
+
+
+		  </div>
+				
+
 
 			</div>
+
 
 
 		</div>
 
-
-	</div>
+		</div>
 
 
 </body>

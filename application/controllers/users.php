@@ -6,6 +6,10 @@ class Users extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User');
+		if($this->session->userdata('loggedIn') === FALSE)
+		{
+			$this->session->sess_destroy();
+		}
 	}
 
 	public function index()
@@ -111,15 +115,7 @@ class Users extends CI_Controller
 
 	public function home()
 	{
-		if($this->session->userdata('loggedIn') === TRUE)
-		{
-			redirect('/books');
-		}
-		else 
-		{
-			$this->session->sess_destroy();
-			redirect('/');
-		}
+		redirect('/books');
 	}
 
 	public function logout()
@@ -130,17 +126,9 @@ class Users extends CI_Controller
 
 	public function profile($id)
 	{
-		if($this->session->userdata('loggedIn') == TRUE)
-		{
-			$array['user'] = $this->User->get_profile($id);
-			$array['reviews'] = $this->User->get_reviews($id);
-			$this->load->view('profile', $array);
-		}
-		else
-		{
-			$this->session->sess_destroy();
-			redirect('/');
-		}
+		$array['user'] = $this->User->get_profile($id);
+		$array['reviews'] = $this->User->get_reviews($id);
+		$this->load->view('profile', $array);
 	}
 
 

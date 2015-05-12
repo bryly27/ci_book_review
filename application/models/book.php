@@ -62,6 +62,16 @@ class Book extends CI_Model {
     {
         return $this->db->query("SELECT books.id as book_id, books.title, authors.id as author_id, authors.name, reviews.id as review_id, reviews.review, reviews.created_at, reviews.rating, users.id as user_id, users.first_name FROM reviews LEFT JOIN books ON reviews.book_id = books.id LEFT JOIN users ON reviews.user_id = users.id LEFT JOIN authors ON books.author_id = authors.id WHERE books.id = ? ORDER BY reviews.id DESC", $id)->result_array();
     }
+
+    function delete_review($id)
+    {
+        $this->db->query("DELETE FROM reviews WHERE id = ?", $id);
+    }
+
+    function get_author($id)
+    {
+        return $this->db->query("SELECT authors.id as author_id, authors.name, books.id as book_id, books.title FROM authors LEFT JOIN books ON books.author_id = authors.id WHERE authors.id = ?", $id)->result_array();
+    }
    
 
 

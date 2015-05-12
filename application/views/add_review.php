@@ -112,6 +112,8 @@
 					     		<img class='star gray star5' src="/assets/img/star.ico" value='5'>
 					      </div>
 							</div>
+
+							<!-- submit -->
 							<div class="form-group">
 					      <div class="col-md-6 col-md-offset-1">
 					     		<input class='btn btn-primary pull-right' type='submit' value='Submit Review'>
