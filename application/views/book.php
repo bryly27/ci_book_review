@@ -146,7 +146,7 @@
 ?>		
 			<div class='col-md-8 col-sm-8'>
 				<h3>Add a review:</h3>
-				<form action='/books/add_review_from_book/<?= $reviews[0]['book_id'] ?>' method='post'>
+				<form action='/books/add_review_from_book/<?= $book['book_id'] ?>' method='post'>
 					<div class="form-group">
 			     	<textarea class="form-control" name='book_review' rows="5" id="review" ></textarea>
 					</div>
@@ -165,8 +165,8 @@
 		     		<input class='btn btn-primary' type='submit' value='Submit Review'>
 						<input id='rating' name='book_rating' type='hidden' value=''>
 						<input type='hidden' name='user_id' value='<?= $this->session->userdata('user')['id'] ?>'>
-						<input type='hidden' name='book_id' value='<?= $reviews[0]['book_id'] ?>'>
-						<input type='hidden' name='author_id' value='<?= $reviews[0]['author_id'] ?>'>
+						<input type='hidden' name='book_id' value='<?= $book['book_id'] ?>'>
+						<input type='hidden' name='author_id' value='<?= $book['author_id'] ?>'>
 					</div>
 				</form>
 
