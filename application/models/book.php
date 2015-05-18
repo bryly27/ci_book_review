@@ -72,6 +72,11 @@ class Book extends CI_Model {
     {
         return $this->db->query("SELECT authors.id as author_id, authors.name, books.id as book_id, books.title FROM authors LEFT JOIN books ON books.author_id = authors.id WHERE authors.id = ?", $id)->result_array();
     }
+
+    function get_book($id)
+    {
+        return $this->db->query("SELECT books.id, books.title, authors.id as author_id, authors.name FROM books LEFT JOIN authors ON authors.id = books.author_id WHERE books.id = ?", $id)->row_array();
+    }
    
 
 

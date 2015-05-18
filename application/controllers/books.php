@@ -67,6 +67,7 @@ class Books extends CI_Controller
 
 	public function review($id)
 	{
+		$array['book'] = $this->Book->get_book($id);
 		$array['reviews'] = $this->Book->get_reviews($id);
 		$this->load->view('book', $array);
 	}

@@ -65,30 +65,37 @@
 	</nav>
 
 	<div class='container book_content'>
-		<h1><?= $reviews[0]['title'] ?></h1>
-		<p>Author: <a href="/books/author/<?= $reviews[0]['author_id'] ?>"><?= $reviews[0]['name'] ?></a></p>
+		<h1><?= $book['title'] ?></h1>
+		<p>Author: <a href="/books/author/<?= $book['author_id'] ?>"><?= $book['name'] ?></a></p>
 		<p>
 <?php  
 		$sum = 0;
 		$avg = 0;
-		foreach ($reviews as $key => $value) 
+		if($reviews)
 		{
-			$sum += $value['rating'];	
-		}
-		$avg = ceil($sum/count($reviews));	
-			for($i = 1; $i<=$avg; $i++)
-			{ ?>
-				<img class='avg_star' src="/assets/img/star.ico">
-<?php } ?>
+			foreach ($reviews as $key => $value) 
+			{
+				$sum += $value['rating'];	
+			}
+			$avg = ceil($sum/count($reviews));	
+				for($i = 1; $i<=$avg; $i++)
+				{ ?>
+					<img class='avg_star' src="/assets/img/star.ico">
+	<?php } ?>
 
-<?php  
-			if(count($reviews)>1)
-			{ ?>
-				(<?= count($reviews) ?> reviews)
-<?php	}
+	<?php  
+				if(count($reviews)>1)
+				{ ?>
+					(<?= count($reviews) ?> reviews)
+	<?php	}
+				else
+				{ ?>
+					(<?= count($reviews) ?> review)
+	<?php	} 
+			}
 			else
 			{ ?>
-				(<?= count($reviews) ?> review)
+				<h4>Be the first to review this book</h4>
 <?php	} ?>
 		</p>
 		
@@ -98,27 +105,30 @@
 			<h3>Reviews:</h3>
 
 <?php  
-			foreach($reviews as $review)
-			{ ?>
-			<div class='review'>
-				<p>Rating: 
-<?php  
-				for($i = 1; $i<=$review['rating']; $i++)
+			if($reviews)
+			{
+				foreach($reviews as $review)
 				{ ?>
-					<img class='review_star' src="/assets/img/star.ico">
-<?php		} ?>
+				<div class='review'>
+					<p>Rating: 
+	<?php  
+					for($i = 1; $i<=$review['rating']; $i++)
+					{ ?>
+						<img class='review_star' src="/assets/img/star.ico">
+	<?php		} ?>
 
 
-<?php  
-				if($this->session->userdata('user')['id'] === $review['user_id'])
-				{ ?>
-					<a class='pull-right' href="/books/delete_review/<?= $review['review_id'] ?>/<?= $review['book_id'] ?>">Delete Review</a>
-<?php		} ?>
-					</p>
-					<p><a href='/users/profile/<?= $review['user_id'] ?>'><?= $review['first_name'] ?></a> says: <?= $review['review'] ?></p>
-					<p>Posted on: <?= date('F jS, Y',strtotime($review['created_at'])) ?></p>
-				</div>
-	<?php	} ?>
+	<?php  
+					if($this->session->userdata('user')['id'] === $review['user_id'])
+					{ ?>
+						<a class='pull-right' href="/books/delete_review/<?= $review['review_id'] ?>/<?= $review['book_id'] ?>">Delete Review</a>
+	<?php		} ?>
+						</p>
+						<p><a href='/users/profile/<?= $review['user_id'] ?>'><?= $review['first_name'] ?></a> says: <?= $review['review'] ?></p>
+						<p>Posted on: <?= date('F jS, Y',strtotime($review['created_at'])) ?></p>
+					</div>
+	<?php	} 
+			} ?>
 			<a href="/books" class='btn btn-default back_button'>Back</a>
  
 			</div>
