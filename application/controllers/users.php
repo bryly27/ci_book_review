@@ -72,11 +72,16 @@ class Users extends CI_Controller
 
 	public function login()
 	{
+
+
 		if($this->input->post('action') == 'login' && $this->input->post('email') !== null && $this->input->post('password') !== null)
 		{
 			//load the form validation library
 			$this->load->library('form_validation');
 			$this->load->library('encrypt');
+			// $test = $this->encrypt->decode("CDoGMQYzWG8MaFUxXjMHYlVhDG9WZlJlAmNRYFQxUGRQNgs6AWgOMQg9VTMAZQUzAGUHOANlVWBbOQRgVDxbYg==");
+			// var_dump($test);
+			// die();
 			//form validation
 			$this->form_validation->set_rules("email","Email","required|valid_email");
 			//set variables to equal to post data
@@ -87,6 +92,8 @@ class Users extends CI_Controller
 			if($user)
 			{
 				$password2 = $this->encrypt->decode($user['password']);
+				var_dump($password2);
+				die();
 			}
 			//if the $user is true and the password is equal to the variable password
 			if ($user && $password2==$password) 
