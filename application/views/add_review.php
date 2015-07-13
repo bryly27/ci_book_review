@@ -116,12 +116,21 @@
 							<!-- submit -->
 							<div class="form-group">
 					      <div class="col-md-6 col-md-offset-1">
-					     		<input class='btn btn-primary pull-right' type='submit' value='Submit Review'>
+<?php  
+							if($this->session->userdata("loggedIn") === FALSE)
+							{ ?>
+								<a href="/users" class="btn btn-primary pull-right">Login or Register</a>
+<?php					}
+							else
+							{ ?>
+					     	<input class='btn btn-primary pull-right' type='submit' value='Submit Review'>
+<?php					} ?>					      	
 									<input id='rating' name='book_rating' type='hidden' value=''>
 									<input type='hidden' name='user_id' value='<?= $this->session->userdata('user')['id'] ?>'>
 					      	<a href="/books" class='btn btn-danger pull-right back_button'>Back</a>
 					      </div>
 							</div>
+
 						</form>
 					</div>
 				</div>

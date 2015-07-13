@@ -29,11 +29,22 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-              <a class="page-scroll" href="/users/profile/<?= $this->session->userdata('user')['id'] ?>"><?= $this->session->userdata('user')['first_name'] ?></a>
-          </li>
-          <li>
-              <a class="page-scroll" href="/users/logout">Log Out</a>
-          </li>
+<?php
+						if($this->session->userdata("loggedIn") === FALSE)
+						{ ?>
+            		<a cslass="page-scroll" href="/users">Login or Register</a>
+          		</li>
+
+<?php				}
+						else
+						{ ?>
+            		<a class="page-scroll" href="/users/profile/<?= $this->session->userdata('user')['id'] ?>"><?= $this->session->userdata('user')['first_name'] ?></a>
+							<li>
+							  <a class="page-scroll" href="/users/logout">Log Out</a>
+							</li>
+<?php				}
+?>          	
+         
         </ul>
       </div>
       <!-- /.navbar-collapse -->

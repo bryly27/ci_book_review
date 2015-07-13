@@ -162,12 +162,22 @@
 			    
 			    <!-- submit -->
 					<div class="form-group submit_form">
-		     		<input class='btn btn-primary' type='submit' value='Submit Review'>
+<?php  
+						if($this->session->userdata("loggedIn") === FALSE)
+						{ ?>
+							<a href="/users" class="btn btn-default">Login or Register</a> 
+<?php				}
+						else
+						{ ?>
+		     			<input class='btn btn-primary' type='submit' value='Submit Review'>							
+<?php				} ?>		
+
 						<input id='rating' name='book_rating' type='hidden' value=''>
 						<input type='hidden' name='user_id' value='<?= $this->session->userdata('user')['id'] ?>'>
 						<input type='hidden' name='book_id' value='<?= $book['book_id'] ?>'>
 						<input type='hidden' name='author_id' value='<?= $book['author_id'] ?>'>
 					</div>
+
 				</form>
 
 

@@ -7,11 +7,11 @@ class Books extends CI_Controller
 		parent::__construct();
 		$this->load->model('User');
 		$this->load->model('Book');
-		if($this->session->userdata('loggedIn') === FALSE)
-		{
-			$this->session->sess_destroy();
-			redirect('/users');
-		}
+		// if($this->session->userdata('loggedIn') === FALSE)
+		// {
+		// 	$this->session->sess_destroy();
+		// 	redirect('/users');
+		// }
 	}
 
 	public function index()

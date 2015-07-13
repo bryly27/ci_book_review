@@ -106,7 +106,7 @@ class Users extends CI_Controller
 				$errors[] = 'Please enter valid credentials';
     		$this->session->set_flashdata('errors', $errors);
 				// $this->load->view('main');
-				redirect('/');
+				redirect('/users');
 			}
 		}
 	}
