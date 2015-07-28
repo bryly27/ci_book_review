@@ -132,17 +132,9 @@ class Users extends CI_Controller
 
 	public function profile($id)
 	{
-		if($this->session->userdata('loggedIn') === TRUE)
-		{
 			$array['user'] = $this->User->get_profile($id);
 			$array['reviews'] = $this->User->get_reviews($id);
 			$this->load->view('profile', $array);
-		}
-		else 
-		{
-			$this->session->sess_destroy();
-			redirect('/');
-		}
 	}
 
 
